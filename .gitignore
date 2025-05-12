@@ -1,0 +1,19 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Local database
+*.sqlite
+
+# Logs
+logs
+*.log
+
+# Authentication data
+.wwebjs_auth/
+
+# OS specific files
+.DS_Store
+Thumbs.db
