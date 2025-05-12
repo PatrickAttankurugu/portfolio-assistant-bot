@@ -6,14 +6,22 @@ node_modules/
 
 # Local database
 *.sqlite
+chromadb/
 
 # Logs
 logs
 *.log
+error.log
+combined.log
 
 # Authentication data
 .wwebjs_auth/
+.wwebjs_cache/
 
 # OS specific files
 .DS_Store
-Thumbs.db
+Thumbbs.db
+
+# IDE files
+.vscode/
+.idea/
