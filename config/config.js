@@ -4,7 +4,7 @@ require('dotenv').config();
 module.exports = {
   // Vector database configuration
   COLLECTION_NAME: 'portfolio_knowledge',
-  // Remove the CHROMA_URL as we're using in-memory
+  // We're using in-memory vector store, so no URL is needed
   
   // Chunking configuration
   CHUNK_SIZE: 500,

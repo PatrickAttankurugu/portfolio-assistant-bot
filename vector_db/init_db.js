@@ -1,5 +1,5 @@
 // Vector database initialization
-const { HNSWLib } = require('@langchain/hnswlib'); 
+const { HNSWLib } = require('@langchain/community/vectorstores/hnswlib');
 const { GoogleGenerativeAIEmbeddings } = require('@langchain/google-genai');
 const { loadPortfolioDocuments } = require('../knowledge_base/processors/loader');
 const { DocumentProcessor } = require('../knowledge_base/processors/chunker');

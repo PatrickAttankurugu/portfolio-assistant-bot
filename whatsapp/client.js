@@ -1,15 +1,28 @@
+// whatsapp/client.js
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { handleMessage } = require('./message_handler');
 const logger = require('../utils/logger');
+const puppeteer = require('puppeteer');
 
 class WhatsAppClient {
   constructor() {
     this.client = new Client({
       authStrategy: new LocalAuth({ clientId: 'portfolio-assistant' }),
       puppeteer: {
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        headless: true
+        headless: true,  // Use headless true for more stability
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--no-first-run',
+          '--no-zygote',
+          '--single-process', // <- this one doesn't work in Windows
+          '--disable-gpu'
+        ],
+        ignoreHTTPSErrors: true,
+        defaultViewport: null
       }
     });
 
@@ -54,7 +67,13 @@ class WhatsAppClient {
   }
 
   async initialize() {
-    await this.client.initialize();
+    try {
+      logger.info('Initializing WhatsApp client...');
+      await this.client.initialize();
+    } catch (error) {
+      logger.error('Error initializing WhatsApp client:', error);
+      throw error;
+    }
   }
 }
 
